@@ -1,18 +1,16 @@
 <template>
-    <div>
-        <h1>123</h1>
-    </div>
+  <div>
+    <h1>123</h1>
+  </div>
 </template>
 
 <script>
-    export default {
-        name: "Login",
-        data() {
-            return {
-
-            }
-        }
+  export default {
+    name: "Login",
+    data() {
+      return {}
     }
+  }
 </script>
 
 <style scoped>
