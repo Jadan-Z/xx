@@ -1,15 +1,12 @@
 <template>
   <div>
-    <h1>123</h1>
+    <h1>test title</h1>
   </div>
 </template>
 
 <script>
   export default {
-    name: "Login",
-    data() {
-      return {}
-    }
+    name: "test",
   }
 </script>
 
