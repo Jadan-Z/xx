@@ -11,20 +11,37 @@ export default new Router({
     { path: '/', redirect: '/login'},
 
     // Login
-    { path: '/login', component: () => import('../view/Login.vue')},
+    { path: '/login', component: () => import('../view/Login.vue'), meta:{title: '注册'}},
 
     // Register
     { path: '/register', component: () => import('../view/student/Register.vue') },
 
     // student
-    { path: '/student', component: () => import('../view/student/Stu.vue')},
+    { path: '/student', component: () => import('../view/student/Student.vue')},
+
+    // student: info
+    { path: '/student/info', component: () => import('../view/student/PersonInformation.vue')},
 
     // teacher
-    { path: '/teacher', component: () => import('../view/teacher/Teacher.vue')},
+    { path: '/teacher', component: () => import('../view/teacher/TeacherTest.vue')},
+
+    // headmaster
+    { path: '/headmaster', component: () => import('../view/headmaster/HeadmasterTest.vue')},
 
     // test
-    { path: '/test', component: () => import('../view/test/test.vue')}
+    { path: '/test', component: () => import('../view/user/UserIndex.vue')},
+
+    // buju
+    { path: '/bu', component: () => import('../view/test/message.vue')},
+
+    // header
+    { path: '/header', component: () => import('../view/compoents/header.vue')},
+
+    // tab
+      { path: '/tabs', component: () => import('../view/test/myTab.vue')},
+
+      // test
+      { path: '/test1', component: () => import('../view/test/test.vue')}
 
   ],
-
 })

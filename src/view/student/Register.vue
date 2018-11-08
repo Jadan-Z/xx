@@ -1,5 +1,9 @@
 <template>
-    <div style="background-color: #EEE; height: 650px; display: flex; align-items: center; justify-content: center;">
+    <div  style="background-color: #EEE;
+            height: 650px;
+            display: flex;
+            align-items: center;
+            justify-content: center;">
         <div></div>
         <div>
             <el-container style="width: 400px; height:450px; ">
@@ -11,7 +15,13 @@
                 <!-- 登录界面主体部分 -->
                 <el-main>
                     <div>
-                        <el-form :model="ruleForm2" status-icon :rules="rules2" ref="ruleForm2" label-width="100px" class="demo-ruleForm">
+                        <el-form
+                                :model="ruleForm2"
+                                status-icon
+                                :rules="rules2"
+                                ref="ruleForm2"
+                                label-width="100px"
+                                class="demo-ruleForm">
                             <h2>学生注册</h2>
                             <br/><br/>
 
@@ -28,7 +38,7 @@
                                 <br/>
 
                                 <el-form-item style="width: 300px;" size="small">
-                                    <el-button type="primary" @click="submitForm('ruleForm2') === true" >提交</el-button>
+                                    <el-button type="primary" @click="submitForm('ruleForm2')" >注册</el-button>
                                     <el-button @click="resetForm('ruleForm2')">重置</el-button>
                                     <el-button type="info" @click="jumpRegist()">去登录</el-button>
                                 </el-form-item>
@@ -44,13 +54,16 @@
 <script>
     export default {
         data() {
+            // 验证账号
             var checkAccount = (rule, value, callback) => {
                 if (!value) {
                     return callback(new Error('账号不能为空'));
-                } else if(value.length < 5 ) {
-                        return callback(new Error('账号长度不能少于5位'));
+                } else if(value.length < 5 || value.length > 11) {
+                    return callback(new Error('账号长度为5~11位'));
                 }
+                return callback()
             };
+            // 验证密码
             var validatePass = (rule, value, callback) => {
                 if (value === '') {
                     callback(new Error('请输入密码'));
@@ -64,6 +77,7 @@
                     callback();
                 }
             };
+            // 验证确认密码
             var validatePass2 = (rule, value, callback) => {
                 if (value === '') {
                     callback(new Error('请再次输入密码'));
@@ -80,39 +94,54 @@
                     account: ''
                 },
                 rules2: {
+                    account: [
+                        { validator: checkAccount, trigger: 'blur' }
+                    ],
                     pass: [
                         { validator: validatePass, trigger: 'blur' }
                     ],
                     checkPass: [
                         { validator: validatePass2, trigger: 'blur' }
-                    ],
-                    account: [
-                        { validator: checkAccount, trigger: 'blur' }
                     ]
                 }
             };
         },
         methods: {
+            // 跳转到登录
             jumpRegist(){
                 this.$router.push({ path: '/login'})
             },
+            // 提交
             submitForm(formName) {
                 this.$refs[formName].validate((valid) => {
                     if (valid) {
-                        console.log("xxx")
-                        alert('submit!');
-                        // console.log('error submit!!');
-                        // this.$router.push({ path: '/test'})
-                        return true;
+                        // alert('submit!');
+                        let data = {}
+                        data.account = this.ruleForm2.account,
+                        data.pass = this.ruleForm2.pass,
+                        this.axios.post('/student/register', data)
+                            .then(response => {
+                                // if (response.status === 200) {
+                                // }
+
+                                this.$message.success("注册成功")
+                                this.$router.push({ path: '/login'})
+                            })
+                            .catch(error => {
+                                this.$message.error(error.response.data.message)
+                            })
                     } else {
                         return false;
                     }
                 });
             },
+            // 重置
             resetForm(formName) {
                 this.$refs[formName].resetFields();
             }
-
+        },
+        created() {
+            document.title='Booking System'
         }
     }
 </script>
@@ -132,19 +161,6 @@
         border-radius: 20px;
         /*设置高亮*/
         box-shadow: 0 0 8px #4E4E4E;
-    }
-
-    body > .el-container {
-        margin-bottom: 40px;
-    }
-
-    .el-container:nth-child(5) .el-aside,
-    .el-container:nth-child(6) .el-aside {
-        line-height: 260px;
-    }
-
-    .el-container:nth-child(7) .el-aside {
-        line-height: 320px;
     }
 
 </style>

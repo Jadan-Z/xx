@@ -14,37 +14,32 @@
 
                     <el-menu-item index="1">
                         <i class="el-icon-document"></i>
-                        <span slot="title">教师信息</span>
+                        <span slot="title">学员信息</span>
                     </el-menu-item>
 
                     <el-menu-item index="2">
-                        <i class="el-icon-time"></i>
-                        <span slot="title">可用时间</span>
+                        <i class="el-icon-bell"></i>
+                        <span slot="title">学员通知</span>
                     </el-menu-item>
 
                     <el-menu-item index="3">
-                        <i class="el-icon-service"></i>
-                        <span slot="title">我的课时</span>
+                        <i class="el-icon-news"></i>
+                        <span slot="title">课程管理</span>
                     </el-menu-item>
 
                     <el-menu-item index="4">
                         <i class="el-icon-view"></i>
-                        <span slot="title">我的学生</span>
+                        <span slot="title">员工管理</span>
                     </el-menu-item>
 
                     <el-menu-item index="5">
-                        <i class="el-icon-bell"></i>
-                        <span slot="title">我的通知</span>
+                        <i class="el-icon-edit-outline"></i>
+                        <span slot="title">财务管理</span>
                     </el-menu-item>
 
                     <el-menu-item index="6">
-                        <i class="el-icon-edit-outline"></i>
-                        <span slot="title">我的工资</span>
-                    </el-menu-item>
-
-                    <el-menu-item index="7">
                         <i class="el-icon-setting"></i>
-                        <span slot="title">账号设置</span>
+                        <span slot="title">系统设置</span>
                     </el-menu-item>
                 </el-menu>
             </el-col>
@@ -64,7 +59,6 @@
         }
     }
 </script>
-
 
 <style scoped>
     .tac {

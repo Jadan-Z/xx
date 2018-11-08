@@ -11,10 +11,18 @@
                 <!-- 登录界面主体部分 -->
                 <el-main>
                     <div>
-                        <el-form :model="ruleForm2" status-icon :rules="rules2" ref="ruleForm2" label-width="100px" class="demo-ruleForm">
+                        <el-form
+                                :model="ruleForm2"
+                                status-icon
+                                :rules="rules2"
+                                ref="ruleForm2"
+                                label-width="100px"
+                                class="demo-ruleForm">
                             <div>
                                 <!--<template>-->
-                                <el-radio-group v-model="radio2" style="margin-top: 20px;">
+                                <el-radio-group
+                                        v-model="radio2"
+                                        style="margin-top: 20px;">
                                     <el-radio :label="3">学生</el-radio>
                                     <el-radio :label="6">教师</el-radio>
                                     <el-radio :label="9">校长</el-radio>
@@ -37,9 +45,9 @@
 
                                 <!--<div style="width: 400px;">-->
                                     <el-form-item style="width: 300px;" size="small">
-                                        <el-button type="primary" @click="submitForm('ruleForm2')" size="small">提交</el-button>
+                                        <el-button type="primary" @click="submitForm('ruleForm2')" size="small">登录</el-button>
                                         <el-button @click="resetForm('ruleForm2')">重置</el-button>
-                                        <el-button type="info" v-if="radio2 == 3" @click="jumpRegist()">去注册</el-button>
+                                        <el-button type="info" v-if="radio2 == 3" @click="jumpRegist">去注册</el-button>
                                     </el-form-item>
                                 <!--</div>-->
                             </div>
@@ -57,9 +65,10 @@
             var checkAccount = (rule, value, callback) => {
                 if (!value) {
                     return callback(new Error('账号不能为空'));
-                }else if(value.length < 5 ) {
-                    return callback(new Error('账号长度不能少于5位'));
+                }else if(value.length < 5 || value.length > 11) {
+                    return callback(new Error('账号长度为5~11位'));
                 }
+                callback();
             };
             var validatePass = (rule, value, callback) => {
                 if (value === '') {
@@ -111,7 +120,18 @@
             submitForm(formName) { // 提交验证
                 this.$refs[formName].validate((valid) => {
                     if (valid) {
-                        alert('submit!');
+                        // alert('submit!');
+                        let data = {}
+                        data.role = this.radio2
+                        data.account = this.ruleForm2.account
+                        data.pass = this.ruleForm2.pass
+                        this.axios.post('/login', data)
+                            .then(response => {
+                                this.$message.success("登录中....")
+                            })
+                            .catch(error => {
+                                this.$message.error(error.response.data.message)
+                            })
                     } else {
                         // console.log('error submit!!');
                         return false;
@@ -121,6 +141,9 @@
             resetForm(formName) { // 重置按钮
                 this.$refs[formName].resetFields();
             }
+        },
+        created() {
+            document.title='Booking System'
         }
     }
 </script>
@@ -142,17 +165,17 @@
         box-shadow: 0 0 8px #4E4E4E;
     }
 
-    body > .el-container {
-        margin-bottom: 40px;
-    }
+    /*body > .el-container {*/
+        /*margin-bottom: 40px;*/
+    /*}*/
 
-    .el-container:nth-child(5) .el-aside,
-    .el-container:nth-child(6) .el-aside {
-        line-height: 260px;
-    }
+    /*.el-container:nth-child(5) .el-aside,*/
+    /*.el-container:nth-child(6) .el-aside {*/
+        /*line-height: 260px;*/
+    /*}*/
 
-    .el-container:nth-child(7) .el-aside {
-        line-height: 320px;
-    }
+    /*.el-container:nth-child(7) .el-aside {*/
+        /*line-height: 320px;*/
+    /*}*/
 
 </style>
