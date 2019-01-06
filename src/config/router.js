@@ -24,6 +24,10 @@ export default new Router({
           {
               path: 'personInfo',
               component: () => import('../view/student/PersonInformation.vue')
+          },
+          {
+              path: 'setting',
+              component: () => import('../view/compoents/student-setting.vue')
           }
 
       ]
@@ -32,7 +36,13 @@ export default new Router({
     // teacher
     {
       path: '/teacher',
-      component: () => import('../view/teacher/TeacherTest.vue')
+      component: () => import('../view/teacher/TeacherTest.vue'),
+      children: [
+          {
+              path: 'setting',
+              component: () => import('../view/compoents/teacher-setting.vue')
+          }
+      ]
     },
 
     // headmaster
@@ -41,13 +51,13 @@ export default new Router({
       component: () => import('../view/headmaster/HeadmasterTest.vue'),
       children: [
           {
-            path: 'settings',
-            component: () => import('../view/compoents/master-settings.vue')
-          },
-          {
             path: 'info',
             component: () => import('../view/compoents/info.vue')
-          }
+          },
+          {
+              path: 'setting',
+              component: () => import('../view/compoents/master-settings.vue')
+          },
       ]
     },
 

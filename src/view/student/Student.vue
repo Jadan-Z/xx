@@ -44,7 +44,7 @@
                             <span slot="title">收藏老师</span>
                         </el-menu-item>
 
-                        <el-menu-item index="7">
+                        <el-menu-item index="7" @click="setting">
                             <i class="el-icon-setting"></i>
                             <span slot="title">账号设置</span>
                         </el-menu-item>
@@ -96,6 +96,14 @@
             personInfo(){
                 this.$router.push({
                     path: "/student/personInfo",
+                    query: {
+
+                    }
+                })
+            },
+            setting() {
+                this.$router.push({
+                    path: "/student/setting",
                     query: {
 
                     }
