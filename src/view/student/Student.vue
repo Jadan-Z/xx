@@ -9,21 +9,12 @@
                             class="el-menu-vertical-demo"
                             @open="handleOpen"
                             @close="handleClose"
+                            @select="menu_select"
                             background-color="#4f6071"
                             text-color="#fff"
                             active-text-color="#4890da">
 
-                        <!--<el-submenu index="1">-->
-                        <!--<template slot="title">-->
-                        <!--<i class="el-icon-document"></i>-->
-                        <!--<span>个人信息</span>-->
-                        <!--</template>-->
-                        <!--<el-menu-item-group>-->
-                        <!--<el-menu-item index="1-1">选项1</el-menu-item>-->
-                        <!--<el-menu-item index="1-2">选项2</el-menu-item>-->
-                        <!--</el-menu-item-group>-->
-                        <!--</el-submenu>-->
-                        <el-menu-item index="1">
+                        <el-menu-item index="1" @click="personInfo">
                             <i class="el-icon-document"></i>
                             <span slot="title">个人信息</span>
                         </el-menu-item>
@@ -63,15 +54,12 @@
         </el-aside>
         <el-container>
             <el-header style="padding-left: 0px; padding-right: 0px;">
-                <myhead></myhead>
+                <el-breadcrumb style="font-size: 25px; padding-left:20px; padding-top: 15px; box-shadow: 0 0 8px BLack; height: 40px;">
+                    <el-breadcrumb-item>{{ title }}</el-breadcrumb-item>
+                </el-breadcrumb>
             </el-header>
             <el-main>
-                <el-tabs type="border-card">
-                    <el-tab-pane label="用户管理">用户管理</el-tab-pane>
-                    <el-tab-pane label="配置管理">配置管理</el-tab-pane>
-                    <el-tab-pane label="角色管理">角色管理</el-tab-pane>
-                    <el-tab-pane label="定时任务补偿">定时任务补偿</el-tab-pane>
-                </el-tabs>
+                <router-view></router-view>
             </el-main>
         </el-container>
     </el-container>
@@ -83,12 +71,36 @@
     export default {
         data () {
             return {
-
+                title: '个人信息'
             }
-
         },
         methods: {
+            menu_select(index) {
+                switch (index) {
+                    case '1':
+                        this.title = '个人信息';break;
+                    case '2':
+                        this.title = '预约课程';break;
+                    case '3':
+                        this.title = '我的预约';break;
+                    case '4':
+                        this.title = '上课记录';break;
+                    case '5':
+                        this.title = '购买课程';break;
+                    case '6':
+                        this.title = '收藏老师';break;
+                    case '7':
+                        this.title = '系统设置';break;
+                }
+            },
+            personInfo(){
+                this.$router.push({
+                    path: "/student/personInfo",
+                    query: {
 
+                    }
+                })
+            }
 
         },
         components : {

@@ -17,16 +17,39 @@ export default new Router({
     { path: '/register', component: () => import('../view/student/Register.vue') },
 
     // student
-    { path: '/student', component: () => import('../view/student/Student.vue')},
+    {
+      path: '/student',
+      component: () => import('../view/student/Student.vue'),
+      children: [
+          {
+              path: 'personInfo',
+              component: () => import('../view/student/PersonInformation.vue')
+          }
 
-    // student: info
-    { path: '/student/info', component: () => import('../view/student/PersonInformation.vue')},
+      ]
+    },
 
     // teacher
-    { path: '/teacher', component: () => import('../view/teacher/TeacherTest.vue')},
+    {
+      path: '/teacher',
+      component: () => import('../view/teacher/TeacherTest.vue')
+    },
 
     // headmaster
-    { path: '/headmaster', component: () => import('../view/headmaster/HeadmasterTest.vue')},
+    {
+      path: '/headmaster',
+      component: () => import('../view/headmaster/HeadmasterTest.vue'),
+      children: [
+          {
+            path: 'settings',
+            component: () => import('../view/compoents/master-settings.vue')
+          },
+          {
+            path: 'info',
+            component: () => import('../view/compoents/info.vue')
+          }
+      ]
+    },
 
     // test
     { path: '/test', component: () => import('../view/user/UserIndex.vue')},
@@ -41,7 +64,11 @@ export default new Router({
       { path: '/tabs', component: () => import('../view/test/myTab.vue')},
 
       // test
-      { path: '/test1', component: () => import('../view/test/test.vue')}
+      { path: '/test1', component: () => import('../view/test/test.vue')},
+
+      // master-settings
+      { path: '/headmaster/master-settings', component: () => import('../view/compoents/master-settings.vue')}
+      // { path: '/xx', component: component1 }
 
   ],
 })

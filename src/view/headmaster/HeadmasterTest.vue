@@ -14,12 +14,12 @@
                             text-color="#fff"
                             active-text-color="#4890da">
 
-                        <el-menu-item index="1">
+                        <el-menu-item index="1" @click="btn_info()">
                             <i class="el-icon-document"></i>
                             <span slot="title">学员信息</span>
                         </el-menu-item>
 
-                        <el-menu-item index="2">
+                        <el-menu-item index="2" @click="btn_info2()">
                             <i class="el-icon-bell"></i>
                             <span slot="title">学员通知</span>
                         </el-menu-item>
@@ -54,19 +54,13 @@
                 </el-breadcrumb>
             </el-header>
             <el-main>
-                <el-tabs type="border-card">
-                    <el-tab-pane label="用户管理">用户管理</el-tab-pane>
-                    <el-tab-pane label="配置管理">配置管理</el-tab-pane>
-                    <el-tab-pane label="角色管理">角色管理</el-tab-pane>
-                    <el-tab-pane label="定时任务补偿">定时任务补偿</el-tab-pane>
-                </el-tabs>
+                <router-view></router-view>
             </el-main>
         </el-container>
     </el-container>
 </template>
 
 <script>
-
     export default {
         data () {
             return {
@@ -89,7 +83,24 @@
                     case '6':
                         this.title = '系统设置';break;
                 }
+            },
+            btn_info() {
+                this.$router.push({
+                    path: "/headmaster/settings",
+                    query: {
+
+                    }
+                })
+            },
+            btn_info2() {
+                this.$router.push({
+                    path: "/headmaster/info",
+                    query: {
+
+                    }
+                })
             }
+
         },
         created() {
             document.title='Booking System'
