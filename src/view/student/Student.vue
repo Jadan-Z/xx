@@ -2,13 +2,14 @@
     <el-container>
         <el-aside width="201px">
             <el-row class="tac" >
+                <!--@open="handleOpen"-->
+                <!--@close="handleClose"-->
                 <el-col :span="2">
                     <el-menu
                             style="height: 100vh; width: 200px;"
                             default-active="1"
                             class="el-menu-vertical-demo"
-                            @open="handleOpen"
-                            @close="handleClose"
+
                             @select="menu_select"
                             background-color="#4f6071"
                             text-color="#fff"
@@ -19,27 +20,37 @@
                             <span slot="title">个人信息</span>
                         </el-menu-item>
 
-                        <el-menu-item index="2">
+                        <el-menu-item index="2" @click="appointment">
                             <i class="el-icon-menu"></i>
                             <span slot="title">预约课程</span>
                         </el-menu-item>
 
-                        <el-menu-item index="3">
+                        <el-menu-item index="3" @click="reservation">
                             <i class="el-icon-location"></i>
                             <span slot="title">我的预约</span>
                         </el-menu-item>
 
-                        <el-menu-item index="4">
+                        <el-menu-item index="4" @click="classRecord">
                             <i class="el-icon-loading"></i>
                             <span slot="title">上课记录</span>
                         </el-menu-item>
 
-                        <el-menu-item index="5">
+                        <el-menu-item index="5" disabled>
                             <i class="el-icon-goods"></i>
-                            <span slot="title">购买课程</span>
+                            <span slot="title">我的钱包</span>
                         </el-menu-item>
 
-                        <el-menu-item index="6">
+                        <!--<el-submenu index="5" style="padding-right: 25px;">-->
+                            <!--<template slot="title">-->
+                                <!--<i class="el-icon-goods"></i>-->
+                                <!--<span slot="title">我的钱包</span>-->
+                            <!--</template>-->
+
+                            <!--<el-menu-item index="5-1" @click="test001">充值</el-menu-item>-->
+                            <!--<el-menu-item index="5-2" @click="test002">交易记录</el-menu-item>-->
+                        <!--</el-submenu>-->
+
+                        <el-menu-item index="6" @click="collect">
                             <i class="el-icon-star-on"></i>
                             <span slot="title">收藏老师</span>
                         </el-menu-item>
@@ -66,7 +77,6 @@
 </template>
 
 <script>
-    import header from '../compoents/header.vue';
 
     export default {
         data () {
@@ -86,7 +96,11 @@
                     case '4':
                         this.title = '上课记录';break;
                     case '5':
-                        this.title = '购买课程';break;
+                        this.title = '我的钱包';break;
+                    // case '5-1':
+                    //     this.title = '充值';break;
+                    // case '5-2':
+                    //     this.title = '交易记录';break;
                     case '6':
                         this.title = '收藏老师';break;
                     case '7':
@@ -95,10 +109,46 @@
             },
             personInfo(){
                 this.$router.push({
-                    path: "/student/personInfo",
+                    path: "/student/info",
                     query: {
 
                     }
+                })
+            },
+            appointment(){
+                this.$router.push({
+                    path: "/student/appointment",
+                    query: {
+
+                    }
+                })
+            },
+            reservation(){
+                this.$router.push({
+                    path: "/student/reservation",
+                    query: {
+
+                    }
+                })
+            },
+            classRecord(){
+                this.$router.push({
+                    path: "/student/classRecord"
+                })
+            },
+            // test001() {
+            //     this.$router.push({
+            //         path: "/student/recharge"
+            //     })
+            // },
+            // test002() {
+            //     this.$router.push({
+            //         path: "/student/setting"
+            //     })
+            // },
+            collect(){
+                this.$router.push({
+                    path: "/student/collect"
                 })
             },
             setting() {
@@ -110,9 +160,6 @@
                 })
             }
 
-        },
-        components : {
-            'myhead': header
         },
         created() {
             document.title='Booking System'
@@ -162,7 +209,16 @@
         font-size: 15px;
     }
 
+    .el-submenu span {
+        font-size: 15px;
+    }
+
     .el-menu-item {
         padding-right: 40px;
     }
+
+    .el-submenu {
+        padding-right: 40px;
+    }
+
 </style>

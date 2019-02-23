@@ -144,7 +144,8 @@
         },
         created() {
             document.title='Booking System'
-        }
+        },
+
     }
 </script>
 

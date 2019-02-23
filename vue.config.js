@@ -1,7 +1,7 @@
 module.exports = {
   devServer: {
-    port: 8086,
+    port: 7777,
     // 代理地址
-    proxy: 'http://192.168.0.101:8088'
+    proxy: 'http://127.0.0.1:8888'
   }
 }

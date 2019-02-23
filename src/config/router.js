@@ -22,63 +22,96 @@ export default new Router({
       component: () => import('../view/student/Student.vue'),
       children: [
           {
-              path: 'personInfo',
+              path: 'info',
               component: () => import('../view/student/PersonInformation.vue')
           },
           {
+              path: 'appointment',
+              component: () => import('../view/student/AppointmentCourse.vue')
+          },
+          {
+              path: 'reservation',
+              component: () => import('../view/student/MyReservation.vue')
+          },
+          {
+              path: 'classRecord',
+              component: () => import('../view/student/ClassRecord.vue')
+          },
+          {
+              path: 'recharge',
+              component: () => import('../view/student/Recharge.vue')
+          },
+          {
+              path: 'collect',
+              component: () => import('../view/student/MyCollect.vue')
+          },
+          {
               path: 'setting',
-              component: () => import('../view/compoents/student-setting.vue')
+              component: () => import('../view/student/student-setting.vue')
           }
-
       ]
     },
 
     // teacher
     {
       path: '/teacher',
-      component: () => import('../view/teacher/TeacherTest.vue'),
+      component: () => import('../view/teacher/Teacher.vue'),
       children: [
           {
+              path: 'info',
+              component: () => import('../view/teacher/info.vue')
+          },
+          {
+              path: 'release',
+              component: () => import('../view/teacher/ReleaseCourse.vue')
+          },
+          {
+              path: 'notice',
+              component: () => import('../view/teacher/MyNotice.vue')
+          },
+          {
+              path: 'lesson',
+              component: () => import('../view/teacher/MyLesson.vue')
+          },
+          {
+              path: 'mystudent',
+              component: () => import('../view/teacher/MyStudent.vue')
+          },
+          {
               path: 'setting',
-              component: () => import('../view/compoents/teacher-setting.vue')
-          }
+              component: () => import('../view/teacher/teacher-setting.vue')
+          },
       ]
     },
 
     // headmaster
     {
       path: '/headmaster',
-      component: () => import('../view/headmaster/HeadmasterTest.vue'),
+      component: () => import('../view/headmaster/Headmaster.vue'),
       children: [
           {
-            path: 'info',
-            component: () => import('../view/compoents/info.vue')
+            path: 'stuManagement',
+            component: () => import('../view/headmaster/StudentManagement.vue')
+          },
+          {
+              path: 'empManagement',
+              component: () => import('../view/headmaster/EmployeeManagement.vue')
+          },
+          {
+              path: 'stuNotification',
+              component: () => import('../view/headmaster/StudentNotification.vue')
           },
           {
               path: 'setting',
-              component: () => import('../view/compoents/master-settings.vue')
+              component: () => import('../view/headmaster/headmaster-setting.vue')
           },
       ]
     },
 
-    // test
-    { path: '/test', component: () => import('../view/user/UserIndex.vue')},
-
     // buju
-    { path: '/bu', component: () => import('../view/test/message.vue')},
+    { path: '/bu', component: () => import('../view/test/test01.vue')},
 
-    // header
-    { path: '/header', component: () => import('../view/compoents/header.vue')},
-
-    // tab
-      { path: '/tabs', component: () => import('../view/test/myTab.vue')},
-
-      // test
-      { path: '/test1', component: () => import('../view/test/test.vue')},
-
-      // master-settings
-      { path: '/headmaster/master-settings', component: () => import('../view/compoents/master-settings.vue')}
-      // { path: '/xx', component: component1 }
+    // { path: '/test1', component: () => import('../view/compoents/EmployeeManagement.vue')},
 
   ],
 })

@@ -8,6 +8,9 @@ import router from './config/router'
 import store from './config/store'
 import axios from './config/axios'
 
+Vue.prototype.axios = axios;
+
+
 Vue.use(ElementUI);
 // Vue.use(VueWechatTitle)
 

@@ -1,5 +1,5 @@
 <template>
-    <div  style="background-color: #EEE;
+    <div style="background-color: #EEE;
             height: 650px;
             display: flex;
             align-items: center;
@@ -122,6 +122,7 @@
                         this.axios.post('/student/register', data)
                             .then(response => {
                                 // if (response.status === 200) {
+                                //
                                 // }
 
                                 this.$message.success("注册成功")
